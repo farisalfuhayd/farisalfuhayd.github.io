@@ -81,13 +81,14 @@
   }
 
   function connectParticles() {
+    const MAX_DIST = 180;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
         let dy = particles[i].y - particles[j].y;
         let distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 110) {
-          let opacity = 1 - (distance / 110);
+        if (distance < MAX_DIST) {
+          let opacity = 1 - (distance / MAX_DIST);
           let nearMouse = false;
           if (mouse.x !== undefined) {
             let mdx = mouse.x - particles[i].x;
@@ -95,9 +96,9 @@
             nearMouse = Math.sqrt(mdx * mdx + mdy * mdy) < mouse.radius;
           }
           ctx.strokeStyle = nearMouse
-            ? `rgba(49, 162, 196, ${opacity * 0.5})`
-            : `rgba(20, 33, 61, ${opacity * 0.08})`;
-          ctx.lineWidth = 1;
+            ? `rgba(49, 162, 196, ${opacity * 0.65})`
+            : `rgba(20, 33, 61, ${opacity * 0.18})`;
+          ctx.lineWidth = nearMouse ? 1.3 : 0.8;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
@@ -109,9 +110,24 @@
 
   function init() {
     particles = [];
-    let n = Math.min(60, Math.floor((width * height) / 14000));
+    let n = Math.min(95, Math.floor((width * height) / 10000));
     for (let i = 0; i < n; i++) particles.push(new CustomParticle());
   }
+
+  // Scroll-induced drift — particles flow with page scroll
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const dy = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    // Push particles vertically in opposite direction of scroll (parallax feel)
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].y -= dy * 0.18;
+      // Wrap around so they keep flowing — new ones appear as you scroll
+      if (particles[i].y < -100) particles[i].y = height + 50;
+      if (particles[i].y > height + 100) particles[i].y = -50;
+    }
+  }, { passive: true });
+
   function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, width, height);
@@ -143,6 +159,24 @@
       setLanguage(next);
     }
   });
+
+  /* ---------- Mobile menu toggle ---------- */
+  const menuBtn = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+    navLinks.addEventListener('click', (e) => {
+      if (e.target.closest('a')) {
+        menuBtn.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
 
   /* ---------- Sticky nav ---------- */
   const nav = document.querySelector('.nav');

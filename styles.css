@@ -139,7 +139,63 @@ html[lang="ar"] .nav-links a {
 }
 .lang-toggle:hover { background: var(--ink); color: var(--bg); }
 
-@media (max-width: 800px) { .nav-links { display: none; } }
+/* Mobile menu toggle button */
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin-inline-end: 8px;
+}
+.menu-toggle::before,
+.menu-toggle::after,
+.menu-toggle span {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 1.5px;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+  transition: all 0.35s var(--ease);
+}
+.menu-toggle::before { transform: translate(-50%, calc(-50% - 6px)); }
+.menu-toggle::after { transform: translate(-50%, calc(-50% + 6px)); }
+.menu-toggle.open::before { transform: translate(-50%, -50%) rotate(45deg); }
+.menu-toggle.open::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.menu-toggle.open span { opacity: 0; }
+
+@media (max-width: 800px) {
+  .menu-toggle { display: block; }
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 99;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    padding: 4rem 2rem;
+  }
+  .nav-links.open {
+    display: flex;
+    transform: translateY(0);
+  }
+  .nav-links a {
+    font-size: 1.6rem !important;
+    opacity: 1;
+  }
+  html[lang="ar"] .nav-links a { font-size: 1.8rem !important; }
+}
 
 /* =================== HERO =================== */
 .hero {
@@ -1412,9 +1468,17 @@ body[data-page="brand"] .brand-art::before {
   transform: translateY(110%) scale(0.94);
   filter: blur(8px);
   animation: heroWordRise 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: color 0.35s var(--ease), transform 0.45s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)), text-shadow 0.35s;
+  cursor: default;
 }
 @keyframes heroWordRise {
   to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+/* Hover any word in the hero title — lifts and turns turquoise */
+.hero-title .word:hover {
+  color: var(--accent);
+  transform: translateY(-8px) scale(1.06);
+  text-shadow: 0 12px 30px rgba(49, 162, 196, 0.25);
 }
 
 /* Pull-quote — word-by-word reveal */
@@ -1583,25 +1647,37 @@ html[dir="rtl"] .seq-slug { transform: translateX(24px); }
   .najdi-cursor {
     position: fixed;
     top: 0; left: 0;
-    width: 28px; height: 28px;
+    width: 32px; height: 32px;
     pointer-events: none;
     z-index: 9997;
     transform: translate(-50%, -50%);
-    opacity: 0.7;
-    mix-blend-mode: multiply;
+    opacity: 0.9;
     will-change: transform;
   }
   .najdi-cursor-inner {
     width: 100%; height: 100%;
-    background-color: #14213D;
+    background-color: #31A2C4;
     -webkit-mask: url('assets/svg/najdi-cursor.svg') center/contain no-repeat;
     mask: url('assets/svg/najdi-cursor.svg') center/contain no-repeat;
     will-change: transform;
+    position: relative;
+  }
+  /* center dot inside cursor */
+  .najdi-cursor::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 5px; height: 5px;
+    background: #31A2C4;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(49, 162, 196, 0.7);
+    z-index: 1;
   }
   .najdi-trail {
     position: fixed;
     top: 0; left: 0;
-    width: 22px; height: 22px;
+    width: 26px; height: 26px;
     pointer-events: none;
     z-index: 9996;
     transform: translate(-50%, -50%);
@@ -1613,6 +1689,7 @@ html[dir="rtl"] .seq-slug { transform: translateX(24px); }
     background-color: #31A2C4;
     -webkit-mask: url('assets/svg/najdi-cursor.svg') center/contain no-repeat;
     mask: url('assets/svg/najdi-cursor.svg') center/contain no-repeat;
+    opacity: 0.6;
   }
 }
 @media (hover: none) {
