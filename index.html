@@ -3,357 +3,530 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>فارس آل فهيد · Faris Alfuhayd</title>
-  <meta name="description" content="عشر سنوات بين الرياضة والترفيه والثقافة، في صناعة ما يُذكر. علامات، فعاليات، مجتمعات.">
+  <title>فارس آل فهيد · Faris Al Fuhayd</title>
+  <meta name="description" content="فارس بن شبيب آل فهيد — أصنع علامات، أقود فعاليات، أبني مجتمعات. عشر سنوات في الرياضة والترفيه والثقافة في السعودية.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="home">
 
-<!-- Opening door reveal (Najdi door inspired — six-petal rosette seal) -->
-<div class="door-reveal">
-  <div class="panel left"></div>
-  <svg class="seal" viewBox="0 0 100 100" aria-hidden="true">
-    <g fill="currentColor">
-      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <g transform="translate(50 50)">
-        <ellipse cx="0" cy="-22" rx="5" ry="12"/>
-        <ellipse cx="0" cy="-22" rx="5" ry="12" transform="rotate(60)"/>
-        <ellipse cx="0" cy="-22" rx="5" ry="12" transform="rotate(120)"/>
-        <ellipse cx="0" cy="-22" rx="5" ry="12" transform="rotate(180)"/>
-        <ellipse cx="0" cy="-22" rx="5" ry="12" transform="rotate(240)"/>
-        <ellipse cx="0" cy="-22" rx="5" ry="12" transform="rotate(300)"/>
-        <circle r="5"/>
-      </g>
-      <!-- stepped crown tips outside ring -->
-      <g>
-        <rect x="48" y="0" width="4" height="6"/>
-        <rect x="48" y="94" width="4" height="6"/>
-        <rect x="0" y="48" width="6" height="4"/>
-        <rect x="94" y="48" width="6" height="4"/>
-      </g>
-    </g>
-  </svg>
-  <div class="panel right"></div>
+<div class="ambient-bg" aria-hidden="true">
+  <div class="light-orb turquoise-glow"></div>
+  <div class="light-orb prussian-shadow"></div>
+  <div class="light-orb white-highlight"></div>
+  <div class="film-grain"></div>
 </div>
 
-<!-- Nav -->
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-      <g fill="currentColor">
-        <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2"/>
-        <g transform="translate(50 50)">
-          <ellipse cx="0" cy="-26" rx="6.5" ry="14"/>
-          <ellipse cx="0" cy="-26" rx="6.5" ry="14" transform="rotate(60)"/>
-          <ellipse cx="0" cy="-26" rx="6.5" ry="14" transform="rotate(120)"/>
-          <ellipse cx="0" cy="-26" rx="6.5" ry="14" transform="rotate(180)"/>
-          <ellipse cx="0" cy="-26" rx="6.5" ry="14" transform="rotate(240)"/>
-          <ellipse cx="0" cy="-26" rx="6.5" ry="14" transform="rotate(300)"/>
-          <circle r="6.5"/>
-        </g>
-      </g>
-    </svg>
-    <span>
-      <span class="lang-ar">فارس آل فهيد</span>
-      <span class="lang-en">Faris Alfuhayd</span>
-    </span>
+    <span class="lang-ar">فارس آل فهيد</span>
+    <span class="lang-en">FARIS AL FUHAYD</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
-    <li><a href="events.html"><span class="lang-ar">الفعاليات والعلاقات العامة</span><span class="lang-en">Events & PR</span></a></li>
-    <li><a href="brand.html"><span class="lang-ar">الهوية البصرية</span><span class="lang-en">Brand</span></a></li>
-    <li><a href="community.html"><span class="lang-ar">المجتمعات والمؤثرون</span><span class="lang-en">Community & Influencers</span></a></li>
+    <li><a href="events.html"><span class="lang-ar">الفعاليات</span><span class="lang-en">Events</span></a></li>
+    <li><a href="brand.html"><span class="lang-ar">الهوية</span><span class="lang-en">Brand</span></a></li>
+    <li><a href="community.html"><span class="lang-ar">التكاملات</span><span class="lang-en">Integrations</span></a></li>
+    <li><a href="video.html"><span class="lang-ar">حملات إعلانية</span><span class="lang-en">Campaigns</span></a></li>
     <li><a href="#contact"><span class="lang-ar">تواصل</span><span class="lang-en">Contact</span></a></li>
   </ul>
   <button class="lang-toggle" aria-label="Switch language">EN</button>
 </nav>
 
-<!-- Hero -->
+<!-- HERO with silent KV video loop background -->
 <section class="hero">
-  <!-- Hero background rosette removed pending faithful Najdi SVG from Faris.
-       Will be added back when the exact pattern is provided — no recreations. -->
-  <div class="hero-rosette" hidden>
-    <!--
-      Najdi six-petal rosette, faithful proportions:
-      r=2.5  center dot (filled)
-      r=12   inner petal start (gap between center and petals)
-      r=50   outer petal tip (gap between petals and ring)
-      r=58   inner ring (encloses petals cleanly)
-      r=78   middle ring (toothed band sits between this and outer ring)
-      r=78–88  24 outward-pointing teeth
-      r=96   outer ring
-      Petals are slim almonds, max width ~3, never overlapping each other
-      or breaking the inner ring. This matches the rightmost rosette in
-      the Najdi pattern reference.
-    -->
-    <svg viewBox="0 0 200 200" aria-hidden="true">
-      <g fill="none" stroke="currentColor" stroke-width="0.6">
-        <circle cx="100" cy="100" r="96"/>
-        <circle cx="100" cy="100" r="78"/>
-        <circle cx="100" cy="100" r="58"/>
-      </g>
-
-      <!-- Six slim almond petals, contained inside the inner ring -->
-      <g transform="translate(100 100)" fill="none" stroke="currentColor" stroke-width="0.6">
-        <g id="petalUnit">
-          <path d="M 0 -12 C -2.5 -22 -2.5 -42 0 -50 C 2.5 -42 2.5 -22 0 -12 Z"/>
-        </g>
-        <use href="#petalUnit"/>
-        <use href="#petalUnit" transform="rotate(60)"/>
-        <use href="#petalUnit" transform="rotate(120)"/>
-        <use href="#petalUnit" transform="rotate(180)"/>
-        <use href="#petalUnit" transform="rotate(240)"/>
-        <use href="#petalUnit" transform="rotate(300)"/>
-      </g>
-
-      <!-- Center dot -->
-      <circle cx="100" cy="100" r="2.5" fill="currentColor"/>
-
-      <!-- 24 outward-pointing teeth between middle ring (r=78) and outer ring (r=96) -->
-      <g transform="translate(100 100)" fill="currentColor" stroke="none">
-        <g id="toothUnit"><path d="M -1.6 -78 L 0 -88 L 1.6 -78 Z"/></g>
-        <use href="#toothUnit"/>
-        <use href="#toothUnit" transform="rotate(15)"/>
-        <use href="#toothUnit" transform="rotate(30)"/>
-        <use href="#toothUnit" transform="rotate(45)"/>
-        <use href="#toothUnit" transform="rotate(60)"/>
-        <use href="#toothUnit" transform="rotate(75)"/>
-        <use href="#toothUnit" transform="rotate(90)"/>
-        <use href="#toothUnit" transform="rotate(105)"/>
-        <use href="#toothUnit" transform="rotate(120)"/>
-        <use href="#toothUnit" transform="rotate(135)"/>
-        <use href="#toothUnit" transform="rotate(150)"/>
-        <use href="#toothUnit" transform="rotate(165)"/>
-        <use href="#toothUnit" transform="rotate(180)"/>
-        <use href="#toothUnit" transform="rotate(195)"/>
-        <use href="#toothUnit" transform="rotate(210)"/>
-        <use href="#toothUnit" transform="rotate(225)"/>
-        <use href="#toothUnit" transform="rotate(240)"/>
-        <use href="#toothUnit" transform="rotate(255)"/>
-        <use href="#toothUnit" transform="rotate(270)"/>
-        <use href="#toothUnit" transform="rotate(285)"/>
-        <use href="#toothUnit" transform="rotate(300)"/>
-        <use href="#toothUnit" transform="rotate(315)"/>
-        <use href="#toothUnit" transform="rotate(330)"/>
-        <use href="#toothUnit" transform="rotate(345)"/>
-      </g>
-    </svg>
-  </div>
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/photos/main-kv-poster.jpg">
+    <source src="assets/video/hero-loop.mp4" type="video/mp4">
+  </video>
 
   <div class="hero-inner">
     <div class="hero-eyebrow">
-      <span class="lang-ar">العلاقات · العلامات · الفعاليات — الرياض</span>
-      <span class="lang-en">PR · Brand · Events — Riyadh</span>
+      <span class="lang-ar">من الرياض · منذ ٢٠١٤</span>
+      <span class="lang-en">From Riyadh · Since 2014</span>
     </div>
 
     <h1 class="hero-title">
-      <span data-lang="ar">أصنع علامات. أقود فعاليات. أبني مجتمعات.</span>
-      <span data-lang="en">I make brands. I lead events. I build communities.</span>
+      <span data-lang="ar">أقود علاقات. أدير فعاليات. أبني مجتمعات تخصصية. أعزز العلامات التجارية.</span>
+      <span data-lang="en">I lead relations. I run events. I build niche communities. I grow brands.</span>
     </h1>
 
-    <p class="hero-tagline">
-      <span class="lang-ar">عشر سنوات بين الرياضة والترفيه والثقافة في المملكة، في صناعة ما يُذكر.</span>
-      <span class="lang-en">Ten years between sport, entertainment, and culture in Saudi Arabia — making what's remembered.</span>
-    </p>
-
-    <a href="#work" class="hero-cta">
-      <span class="lang-ar">شاهد الأعمال</span>
-      <span class="lang-en">See the work</span>
-      <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
-        <path d="M1 5 L17 5 M12 1 L17 5 L12 9" stroke="currentColor" stroke-width="1.5"/>
-      </svg>
-    </a>
-  </div>
-</section>
-
-<!-- About — moved to the start (right after hero) so visitors meet Faris first -->
-<section class="section" id="about">
-  <div class="about-grid reveal">
-    <div class="about-photo">
-      <img src="assets/photos/portrait.jpg" alt="Faris bin Shabib Al Fuhayd" loading="lazy" />
-    </div>
-    <div class="about-body">
-      <div class="section-eyebrow" style="margin-bottom: 1.2rem;">
-        <span class="lang-ar">تعريف</span>
-        <span class="lang-en">About</span>
-      </div>
-      <p>
-        <span class="lang-ar">أنا <strong>فارس بن شبيب آل فهيد</strong>. من نجد، من الرياض.</span>
-        <span class="lang-en">I'm <strong>Faris bin Shabib Al Fuhayd</strong>. From Najd. From Riyadh.</span>
-      </p>
-      <p>
-        <span class="lang-ar">ملمٌّ بثقافة بلدي وتاريخه، فأربطُ كلَّ عملٍ أصنعه بمعنىً ثقافيٍّ أبعد من المشروع نفسه.</span>
-        <span class="lang-en">Rooted in my country's culture and history, I tie every work I make to a meaning beyond the project itself.</span>
-      </p>
-      <p>
-        <span class="lang-ar">بين العلاقات العامة والفعاليات والعلامات والمجتمعات — عشرُ سنواتٍ من العمل في مشاريعَ وطنيةٍ كبرى.</span>
-        <span class="lang-en">Across PR, events, brand, and community — ten years on national-scale projects.</span>
-      </p>
-      <div class="credentials">
-        <span class="cred-pill"><span class="lang-ar">ماجستير إدارة الأعمال — التسويق · جامعة كلارك أتلانتا</span><span class="lang-en">MBA Marketing · Clark Atlanta</span></span>
-      </div>
+    <div class="hero-name">
+      <span class="lang-ar">فارس بن شبيب آل فهيد</span>
+      <span class="lang-en">FARIS BIN SHABIB AL FUHAYD</span>
     </div>
   </div>
+
+  <div class="hero-scroll-cue">
+    <span class="lang-ar">انزل</span>
+    <span class="lang-en">Scroll</span>
+  </div>
+
 </section>
 
-<!-- Marquee of headline credits -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>DIRIYAH TENNIS CUP <i class="dot"></i> DIRIYAH FOOTBALL CUP <i class="dot"></i> FORMULA E DIRIYAH E-PRIX <i class="dot"></i> LONGINES SHOW JUMPING <i class="dot"></i> BMX OLYMPIC QUALIFIER <i class="dot"></i> JAKE PAUL vs TOMMY FURY <i class="dot"></i> RIYADH SEASON <i class="dot"></i> DIRIYAH SEASON <i class="dot"></i> GILLES BENSIMON · CULINARY ARTS <i class="dot"></i> MISK FOUNDATION <i class="dot"></i> MINISTRY OF INDUSTRY <i class="dot"></i> SASO <i class="dot"></i> QOYOD <i class="dot"></i>&nbsp;</span>
-    <span>DIRIYAH TENNIS CUP <i class="dot"></i> DIRIYAH FOOTBALL CUP <i class="dot"></i> FORMULA E DIRIYAH E-PRIX <i class="dot"></i> LONGINES SHOW JUMPING <i class="dot"></i> BMX OLYMPIC QUALIFIER <i class="dot"></i> JAKE PAUL vs TOMMY FURY <i class="dot"></i> RIYADH SEASON <i class="dot"></i> DIRIYAH SEASON <i class="dot"></i> GILLES BENSIMON · CULINARY ARTS <i class="dot"></i> MISK FOUNDATION <i class="dot"></i> MINISTRY OF INDUSTRY <i class="dot"></i> SASO <i class="dot"></i> QOYOD <i class="dot"></i>&nbsp;</span>
-  </div>
+<!-- Najdi crown skyline border directly under hero (Asset 17) -->
+<div class="hero-frame-border" aria-hidden="true"></div>
+
+<!-- Najdi rosette divider -->
+<div class="najdi-divider" aria-hidden="true">
+  <div class="line"></div>
+  <span class="ornament"></span>
+  <div class="line"></div>
 </div>
 
-<!-- Stats -->
-<section class="stats">
-  <div class="stat reveal">
-    <div class="stat-number count-on-scroll" data-target="70" data-suffix="+">0</div>
-    <div class="stat-label">
-      <span class="lang-ar">فعالية أُديرت</span>
-      <span class="lang-en">events managed</span>
-    </div>
+<!-- ABOUT MANIFESTO -->
+<section class="about" id="about">
+  <div class="about-photo">
+    <img src="assets/photos/portrait.jpg" alt="Faris bin Shabib Al Fuhayd" />
   </div>
-  <div class="stat reveal">
-    <div class="stat-number count-on-scroll" data-target="60" data-suffix="">0</div>
-    <div class="stat-label">
-      <span class="lang-ar">مؤتمرًا إعلاميًا</span>
-      <span class="lang-en">media conferences</span>
+
+  <div class="about-body">
+    <div class="section-eyebrow">
+      <span class="lang-ar">تعريف</span>
+      <span class="lang-en">Profile</span>
     </div>
-  </div>
-  <div class="stat reveal">
-    <div class="stat-number count-on-scroll" data-target="10" data-suffix="">0</div>
-    <div class="stat-label">
-      <span class="lang-ar">سنواتٍ جميلة في العلاقات والفعاليات والقيادة</span>
-      <span class="lang-en">years in PR, events, and leadership</span>
+
+    <dl class="about-meta">
+      <dt><span class="lang-ar">المكان</span><span class="lang-en">Based</span></dt>
+      <dd><span class="lang-ar">الرياض، السعودية</span><span class="lang-en">Riyadh, Saudi Arabia</span></dd>
+      <dt><span class="lang-ar">الدور</span><span class="lang-en">Role</span></dt>
+      <dd><span class="lang-ar">مدير الشراكات والعلاقات العامة</span><span class="lang-en">Partnerships & PR Manager</span></dd>
+      <dt><span class="lang-ar">التركيز</span><span class="lang-en">Focus</span></dt>
+      <dd><span class="lang-ar">العلاقات العامة · الفعاليات · العلامات · المجتمعات</span><span class="lang-en">PR · Events · Brand · Community</span></dd>
+    </dl>
+
+    <div class="about-manifesto">
+      <p>
+        <span class="lang-ar">أنا فارس بن شبيب آل فهيد. أعملُ في الرياض. أنتمي ثقافيًا إلى نجد.</span>
+        <span class="lang-en">I am Faris bin Shabib Al Fuhayd. I work in Riyadh. I belong, culturally, to Najd.</span>
+      </p>
+      <p>
+        <span class="lang-ar">بين الفعاليات الوطنية والعلامات والمجتمعات، أمضيتُ عشر سنواتٍ وأنا أبني قصصًا وتجارب. أدرت فعاليات، أنشئت بودكاستًا استضاف رؤساء تنفيذيين، وقمت بإنتاج العديد من المحتوى الإعلامي.</span>
+        <span class="lang-en">Across national events, brands, and communities, I've spent ten years building stories and experiences. I have run events, launched a podcast hosting CEOs, and produced media content across formats.</span>
+      </p>
+      <p>
+        <span class="lang-ar">أُؤمنُ أنَّ المشروع يكتسبُ معناه حين يحملُ ثقافةَ مكانه. ولهذا، كلُّ عملٍ أصنعهُ يبدأ من ثقافتنا.</span>
+        <span class="lang-en">I believe a project earns its meaning when it carries the culture of its place. So every piece of work I make starts from our culture.</span>
+      </p>
     </div>
   </div>
 </section>
 
-<!-- Najdi stepped-crown band (tiled as CSS background, exact proportions) -->
-<div class="crown-step" aria-hidden="true"></div>
-
-<!-- Three Pillars -->
-<section class="section" id="work">
-  <div class="reveal">
+<!-- PERSONAL BRAND WALL — reordered per Faris's brief -->
+<section class="sequence" id="work">
+  <div class="sequence-intro">
     <div class="section-eyebrow">
-      <span class="lang-ar">المحاور الثلاثة</span>
-      <span class="lang-en">Three pillars</span>
+      <span class="lang-ar">لقطات من أعمالي</span>
+      <span class="lang-en">Selected work</span>
     </div>
     <h2 class="section-title">
-      <span class="lang-ar">ثلاثُ طُرقٍ، قصةٌ واحدة.</span>
-      <span class="lang-en">Three paths. One story.</span>
+      <span class="lang-ar">عشرُ سنوات. وقصةٌ واحدة.</span>
+      <span class="lang-en">Ten years. One story.</span>
     </h2>
   </div>
 
-  <div class="pillars reveal-stagger">
-    <a href="events.html" class="pillar">
+  <!-- 01 · The King moment — anchor of the wall -->
+  <article class="seq-item wide">
+    <div class="seq-image">
+      <img src="assets/photos/king-salman-misk.jpg" alt="MISK Janadriyah inaugurated by H.M. King Salman" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠١٧ · مهرجان الجنادرية · مؤسسة مسك</span>
+        <span class="lang-en">2017 · JANADRIYAH FESTIVAL · MISK FOUNDATION</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">في الدورة الثانية والثلاثين، افتُتِح موقعُ مسك بحضور خادم الحرمين الشريفين. قُدتُ فريقَ الاتصال الذي أنتجَ هذا الموقع.</span>
+        <span class="lang-en">At the 32nd edition, MISK's pavilion was inaugurated by H.M. the King. I led the communications team that produced it.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 02 · Hala signing -->
+  <article class="seq-item">
+    <div class="seq-image">
+      <img src="assets/photos/me-with-hala.jpg" alt="Qoyod × HALA partnership signing at Seamless" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٥ · قيود × هلا · توقيع الشراكة</span>
+        <span class="lang-en">2025 · QOYOD × HALA · PARTNERSHIP SIGNING</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">من عمل تطوير الأعمال والعلاقات. أقودُ الشراكاتِ وعلاقاتها العامة.</span>
+        <span class="lang-en">From business development and relations work. I lead partnerships and their PR.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 03 · Diriyah Season opening — wide -->
+  <article class="seq-item wide">
+    <div class="seq-image">
+      <img src="assets/photos/diriyah-season.jpg" alt="Diriyah Season 2022 official frame" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٢ · موسم الدرعية</span>
+        <span class="lang-en">2022 · DIRIYAH SEASON</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">أربعون فعالية. منها خمسةُ فعاليات دولية. أدرتُ المركز الإعلامي والعلاقات العامة المحلية.</span>
+        <span class="lang-en">Forty events, five of them international. I led the media center and the domestic PR.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 04 · Diriyah media center -->
+  <article class="seq-item reverse">
+    <div class="seq-image">
+      <img src="assets/photos/diriyah-team-media.jpg" alt="Diriyah Season media center team" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٢ · المركز الإعلامي · موسم الدرعية</span>
+        <span class="lang-en">2022 · MEDIA CENTER · DIRIYAH SEASON</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">أدرت المركز الإعلامي وأكثر من خمسةٍ وعشرين مؤتمرًا إعلامياً.</span>
+        <span class="lang-en">I ran the media center and more than 25 press conferences.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 05 · Riyadh Season · Turki Al-Sheikh -->
+  <article class="seq-item">
+    <div class="seq-image">
+      <img src="assets/photos/riyadh-turki-alsheikh.jpg" alt="Riyadh Season influencer programme with H.E. Turki Al-Sheikh" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٢ · موسم الرياض · تنظيم المؤثرين والإعلاميين</span>
+        <span class="lang-en">2022 · RIYADH SEASON · INFLUENCER & MEDIA OPS</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">بنيتُ قائمةَ الضيوف وخطط جولاتهم، ونسّقتُ التواجد والتنقلات.</span>
+        <span class="lang-en">I built the guest list and their visit plans, and coordinated attendance and movement.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 06 · Qoyod Community -->
+  <article class="seq-item reverse">
+    <div class="seq-image">
+      <img src="assets/photos/community-session-3.jpg" alt="Qoyod Community monthly session" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">منذ ٢٠٢٤ · مجتمع قيود · جلسة شهرية</span>
+        <span class="lang-en">SINCE 2024 · QOYOD COMMUNITY · MONTHLY SESSION</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">مجتمعٌ ماليّ شهري. نجمعُ القيادات الماليّة والريادية.</span>
+        <span class="lang-en">A monthly financial community. We bring together finance and entrepreneurship leaders.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 07 · Messi at Diriyah Football Cup -->
+  <article class="seq-item">
+    <div class="seq-image">
+      <img src="assets/photos/football-cup-messi.jpg" alt="Diriyah Football Cup — Messi event" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٣ · كأس الدرعية لكرة القدم</span>
+        <span class="lang-en">2023 · DIRIYAH FOOTBALL CUP</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">أدرتُ علاقاتنا العامة المحلية للحدث.</span>
+        <span class="lang-en">I managed our domestic PR for the event.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 08 · Diriyah Tennis Cup trophy -->
+  <article class="seq-item reverse">
+    <div class="seq-image">
+      <img src="assets/photos/tennis-cup-winner.jpg" alt="Diriyah Tennis Cup — trophy moment" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٢ · كأس الدرعية للتنس · لحظةُ التتويج</span>
+        <span class="lang-en">2022 · DIRIYAH TENNIS CUP · TROPHY MOMENT</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">نجومُ التنس في الرياض. واحدةٌ من خمس بطولاتٍ دولية أدرتُ العلاقات العامة المحلية في موسم الدرعية.</span>
+        <span class="lang-en">Tennis stars in Riyadh. One of five international championships where I led the domestic PR at Diriyah Season.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 09 · Gilles Bensimon -->
+  <article class="seq-item">
+    <div class="seq-image">
+      <img src="assets/photos/bensimon.jpg" alt="Gilles Bensimon on the 50+ day Saudi journey" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٤ · مع هيئة فنون الطهي · مع جيل بنسيمون</span>
+        <span class="lang-en">2024 · WITH CULINARY ARTS COMMISSION · WITH GILLES BENSIMON</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">خمسون يوماً حول السعودية مع المصوّر العالميّ جيل بنسيمون. خططتُ مسارَه، واخترتُ أطباقه. وثَّقَ الطعام، ووثَّقتُ جولته.</span>
+        <span class="lang-en">Fifty days across Saudi Arabia with world photographer Gilles Bensimon. I planned his route and his plates. He documented the food. I documented his journey.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 10 · Jake Paul interview -->
+  <article class="seq-item reverse">
+    <div class="seq-image">
+      <img src="assets/photos/jake-paul-interview.jpg" alt="Jake Paul interview before The Truth fight" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٣ · The Truth</span>
+        <span class="lang-en">2023 · THE TRUTH</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">قُدتُ علاقاتِنا العامة لنزال "The Truth".</span>
+        <span class="lang-en">I led our PR for "The Truth" fight.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 11 · Italian Super Cup -->
+  <article class="seq-item">
+    <div class="seq-image">
+      <img src="assets/photos/italian-super-cup.jpg" alt="Italian Super Cup in Diriyah" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٣ · كأس السوبر الإيطالي · الدرعية</span>
+        <span class="lang-en">2023 · ITALIAN SUPER CUP · DIRIYAH</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">أدرت الإعلام المحلي في تغطية أبطال الكالشيو.</span>
+        <span class="lang-en">I led the local press coverage of the Calcio champions.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 12 · Newcastle United -->
+  <article class="seq-item reverse">
+    <div class="seq-image">
+      <img src="assets/photos/newcastle.jpg" alt="Greeting Newcastle United players in Saudi Arabia" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٣ · نيوكاسل في الدرعية</span>
+        <span class="lang-en">2023 · NEWCASTLE IN DIRIYAH</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">نادي نيوكاسل في زيارته للمملكة. استقبلتُ اللاعبين وأدرتُ تغطيتنا المحلية للصحافة العربية.</span>
+        <span class="lang-en">Newcastle United visiting Saudi Arabia. I greeted the players and managed our Arabic press coverage.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 13 · Formula E -->
+  <article class="seq-item">
+    <div class="seq-image">
+      <img src="assets/photos/formula-e.jpg" alt="Formula E Diriyah E-Prix" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢١ · فورمولا إي الدرعية</span>
+        <span class="lang-en">2021 · FORMULA E DIRIYAH</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">سباق فورمولا الدرعية. أدرت ظهور الفعالية وإعلامنا العربي والمحلي.</span>
+        <span class="lang-en">The Diriyah Formula race. I led the event's visibility and our Arabic + local media.</span>
+      </p>
+    </div>
+  </article>
+
+  <!-- 14 · BMX -->
+  <article class="seq-item reverse">
+    <div class="seq-image">
+      <img src="assets/photos/bmx-cultural.jpg" alt="BMX Olympic Qualifier — Diriyah" />
+    </div>
+    <div class="seq-caption">
+      <span class="seq-slug">
+        <span class="lang-ar">٢٠٢٢ · BMX · تأهيلياتُ الأولمبياد</span>
+        <span class="lang-en">2022 · BMX · OLYMPIC QUALIFIER</span>
+      </span>
+      <p class="seq-text">
+        <span class="lang-ar">البطولةُ الأولمبيةُ في الدرعية. إدارة الإعلام المحلي والعالمي لإبراز البُعد الثقافي للمملكة فيها.</span>
+        <span class="lang-en">The Olympic qualifier in Diriyah. Managing local and global media to bring out the Kingdom's cultural dimension.</span>
+      </p>
+    </div>
+  </article>
+
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>DIRIYAH SEASON</span><span class="sep"></span>
+    <span>RIYADH SEASON</span><span class="sep"></span>
+    <span>MISK FOUNDATION</span><span class="sep"></span>
+    <span>MINISTRY OF INDUSTRY</span><span class="sep"></span>
+    <span>SASO</span><span class="sep"></span>
+    <span>CULINARY ARTS COMMISSION</span><span class="sep"></span>
+    <span>QOMRA</span><span class="sep"></span>
+    <span>QOYOD</span><span class="sep"></span>
+    <span>DELOITTE</span><span class="sep"></span>
+    <span>HALA</span><span class="sep"></span>
+    <span>TAMARA</span><span class="sep"></span>
+    <span>NADEC</span><span class="sep"></span>
+    <span>DIRIYAH TENNIS CUP</span><span class="sep"></span>
+    <span>FORMULA E DIRIYAH</span><span class="sep"></span>
+    <span>LONGINES</span><span class="sep"></span>
+    <span>BMX WORLD CUP</span><span class="sep"></span>
+    <span>JAKE PAUL · THE TRUTH</span><span class="sep"></span>
+    <span>NEWCASTLE UNITED</span><span class="sep"></span>
+    <span>GILLES BENSIMON</span><span class="sep"></span>
+    <span>RIYADH CHAMBER</span><span class="sep"></span>
+    <span>DIRIYAH SEASON</span><span class="sep"></span>
+    <span>RIYADH SEASON</span><span class="sep"></span>
+    <span>MISK FOUNDATION</span><span class="sep"></span>
+    <span>MINISTRY OF INDUSTRY</span><span class="sep"></span>
+    <span>SASO</span><span class="sep"></span>
+    <span>CULINARY ARTS COMMISSION</span><span class="sep"></span>
+    <span>QOMRA</span><span class="sep"></span>
+    <span>QOYOD</span><span class="sep"></span>
+    <span>DELOITTE</span><span class="sep"></span>
+    <span>HALA</span><span class="sep"></span>
+    <span>TAMARA</span><span class="sep"></span>
+    <span>NADEC</span><span class="sep"></span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="pillars-intro">
+    <div class="section-eyebrow">
+      <span class="lang-ar">المحاور</span>
+      <span class="lang-en">Pillars</span>
+    </div>
+    <h2 class="section-title">
+      <span class="lang-ar">خبراتٌ وعملٌ واحد.</span>
+      <span class="lang-en">One body of work. Many crafts.</span>
+    </h2>
+  </div>
+
+  <div class="pillars-list">
+    <a href="events.html" class="pillar-row">
       <div class="pillar-num">01</div>
-      <h3>
+      <div class="pillar-name">
         <span class="lang-ar">الفعاليات والعلاقات العامة</span>
         <span class="lang-en">Events & PR</span>
-      </h3>
-      <p>
-        <span class="lang-ar">إدارة الاتصال لفعاليات وطنية ودولية في الرياضة والترفيه والثقافة. ٤٠+ فعالية في موسم الدرعية، ٣٥ مؤتمرًا إعلاميًا في موسم الرياض، حملات حكومية مع وزارة الصناعة وساسو ومؤسسة مسك.</span>
-        <span class="lang-en">Communications leadership for national and international events across sport, entertainment and culture. 40+ events at Diriyah Season, 35 media conferences at Riyadh Season, government communications with MIM, SASO and MISK.</span>
-      </p>
-      <span class="work-card-arrow">
-        <span class="lang-ar">القراءة الكاملة</span>
-        <span class="lang-en">Read full case</span>
-        →
-      </span>
+      </div>
+      <div class="pillar-desc">
+        <span class="lang-ar">موسم الدرعية، موسم الرياض، البطولات الدولية، المراكز الإعلامية.</span>
+        <span class="lang-en">Diriyah Season, Riyadh Season, international championships, media centers.</span>
+      </div>
+      <div class="pillar-arrow">
+        <span class="lang-ar">انظر →</span>
+        <span class="lang-en">View →</span>
+      </div>
     </a>
 
-    <a href="brand.html" class="pillar">
+    <a href="brand.html" class="pillar-row">
       <div class="pillar-num">02</div>
-      <h3>
-        <span class="lang-ar">الهوية البصرية والعلامات</span>
+      <div class="pillar-name">
+        <span class="lang-ar">الهوية البصرية</span>
         <span class="lang-en">Brand Identity</span>
-      </h3>
-      <p>
-        <span class="lang-ar">تصميم وقيادة هويات بصرية كاملة: عابر، تليد، وفاء العقارية، لايف الدرعية، POV. من المفهوم إلى الدليل الإرشادي.</span>
-        <span class="lang-en">Full visual identity systems designed and led: ABER, Talid, WAFA real estate, Live Diriyah, POV. From concept to brand guidelines.</span>
-      </p>
-      <span class="work-card-arrow">
-        <span class="lang-ar">القراءة الكاملة</span>
-        <span class="lang-en">Read full case</span>
-        →
-      </span>
+      </div>
+      <div class="pillar-desc">
+        <span class="lang-ar">عابر، تليد، وفاء، لايف الدرعية، POV. من الفكرة إلى الدليل.</span>
+        <span class="lang-en">ABER, Talid, WAFA, Live Diriyah, POV. From concept to brand guide.</span>
+      </div>
+      <div class="pillar-arrow">
+        <span class="lang-ar">انظر →</span>
+        <span class="lang-en">View →</span>
+      </div>
     </a>
 
-    <a href="community.html" class="pillar">
+    <a href="community.html" class="pillar-row">
       <div class="pillar-num">03</div>
-      <h3>
-        <span class="lang-ar">بناء المجتمعات وإدارة المؤثرين</span>
-        <span class="lang-en">Community Building & Influencer Management</span>
-      </h3>
-      <p>
-        <span class="lang-ar">بناء مجتمعات حول العلامة، إدارة المؤثرين والمحتوى من المستخدم، وتشكيل الشراكات الاستراتيجية. مجتمع شهري وبودكاست استضاف رؤساء تنفيذيين ومؤثرين ماليين، وشراكات مع ديلويت، هلا، وتمارا.</span>
-        <span class="lang-en">Building communities around the brand, running influencer and UGC rosters, and shaping strategic partnerships. A monthly community and podcast that has hosted CEOs and major finance creators, with partnerships across Deloitte, HALA, and Tamara.</span>
-      </p>
-      <span class="work-card-arrow">
-        <span class="lang-ar">القراءة الكاملة</span>
-        <span class="lang-en">Read full case</span>
-        →
-      </span>
+      <div class="pillar-name">
+        <span class="lang-ar">الشراكات والمجتمعات والمؤثرين</span>
+        <span class="lang-en">Partnerships, Communities & Influencers</span>
+      </div>
+      <div class="pillar-desc">
+        <span class="lang-ar">مجتمع قيود، بودكاست مجتمع قيود، الشراكات الاستراتيجية، حملات المحتوى.</span>
+        <span class="lang-en">Qoyod Community, the Qoyod Community Podcast, strategic partnerships, content campaigns.</span>
+      </div>
+      <div class="pillar-arrow">
+        <span class="lang-ar">انظر →</span>
+        <span class="lang-en">View →</span>
+      </div>
+    </a>
+
+    <a href="video.html" class="pillar-row">
+      <div class="pillar-num">04</div>
+      <div class="pillar-name">
+        <span class="lang-ar">الفيديو والحملات</span>
+        <span class="lang-en">Video & Campaigns</span>
+      </div>
+      <div class="pillar-desc">
+        <span class="lang-ar">حملات إعلانية وإدارة علامة، وإنشاء المحتوى والسيناريو — كلُّها تُصمَّم لتعظيم العلامة ورفع نسبة العملاء.</span>
+        <span class="lang-en">Ad campaigns and brand management, content and script creation — all engineered to grow the brand and raise the conversion rate.</span>
+      </div>
+      <div class="pillar-arrow">
+        <span class="lang-ar">انظر →</span>
+        <span class="lang-en">View →</span>
+      </div>
     </a>
   </div>
 </section>
 
-<!-- Client strip -->
-<div class="client-strip reveal">
-  <span>Diriyah Season</span>
-  <span>Riyadh Season</span>
-  <span>Ministry of Industry</span>
-  <span>SASO</span>
-  <span>MISK Foundation</span>
-  <span>Culinary Arts Commission</span>
-  <span>Qomra</span>
-  <span>Qoyod</span>
-  <span>Deloitte</span>
-  <span>HALA</span>
-  <span>Tamara</span>
-  <span>NADEC</span>
+<!-- PULL QUOTE -->
+<div class="pullquote">
+  <span class="lang-ar">خلفَ كلِّ عملٍ أصنعه، عُمقٌ ثقافيٌّ يخصُّ بلدي ونشاطَ عميلي.</span>
+  <span class="lang-en">Behind every work I make, a cultural depth that belongs to my country and to my client's craft.</span>
 </div>
 
-<!-- Pull quote -->
-<div class="pullquote reveal">
-  <span class="lang-ar">خلف كل عملٍ أصنعه، عمقٌ ثقافيٌّ يخصُّ نجدًا وبلدي.</span>
-  <span class="lang-en">Behind every work I make, a cultural depth that belongs to Najd and to my country.</span>
-</div>
-
-<!-- Contact -->
+<!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-inner reveal">
-    <div class="section-eyebrow" style="color: var(--turquoise);">
+  <div class="contact-inner">
+    <div class="section-eyebrow">
       <span class="lang-ar">للتواصل</span>
       <span class="lang-en">Get in touch</span>
     </div>
     <h2 class="contact-title">
-      <span class="lang-ar">المشاريعُ التي تبقى، تُبنى بعُمقٍ ثقافي.</span>
-      <span class="lang-en">The projects that last are built with cultural depth.</span>
+      <span class="lang-ar">المشاريعُ والأفكار تبدأُ بمحادثة.</span>
+      <span class="lang-en">Projects and ideas start with a conversation.</span>
     </h2>
-    <div class="contact-links">
-      <a href="mailto:farisalfuhayd@gmail.com">
-        farisalfuhayd@gmail.com →
-      </a>
-      <a href="https://wa.me/966533376657" target="_blank" rel="noopener">
-        WhatsApp · +966 53 337 6657 →
-      </a>
-      <a href="https://www.linkedin.com/in/faris-al-fuhayd" target="_blank" rel="noopener">
-        LinkedIn →
-      </a>
+    <div class="contact-grid">
+      <div class="contact-cell">
+        <div class="contact-key"><span class="lang-ar">البريد</span><span class="lang-en">Email</span></div>
+        <div class="contact-val"><a href="mailto:farisalfuhayd@gmail.com">farisalfuhayd@gmail.com</a></div>
+      </div>
+      <div class="contact-cell">
+        <div class="contact-key"><span class="lang-ar">واتساب</span><span class="lang-en">WhatsApp</span></div>
+        <div class="contact-val"><a href="https://wa.me/966533376657">+966 53 337 6657</a></div>
+      </div>
+      <div class="contact-cell">
+        <div class="contact-key">LinkedIn</div>
+        <div class="contact-val"><a href="https://www.linkedin.com/in/faris-al-fuhayd">faris-al-fuhayd</a></div>
+      </div>
+      <div class="contact-cell">
+        <div class="contact-key"><span class="lang-ar">المكان</span><span class="lang-en">Location</span></div>
+        <div class="contact-val"><span class="lang-ar">الرياض، السعودية</span><span class="lang-en">Riyadh, Saudi Arabia</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<div class="najdi-frame-divider" aria-hidden="true"><div class="frame"></div></div>
+
 <footer class="footer">
-  <div>© 2026 FARIS ALFUHAYD</div>
-  <div>RIYADH · SAUDI ARABIA</div>
+  <div>© 2026 · FARIS AL FUHAYD</div>
+  <div><span class="lang-ar">من الرياض، بصدق</span><span class="lang-en">From Riyadh, with honesty</span></div>
 </footer>
 
 <script src="script.js"></script>
