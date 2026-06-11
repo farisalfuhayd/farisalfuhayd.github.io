@@ -47,7 +47,7 @@
       this.vx = (Math.random() - 0.5) * 0.4;
       this.vy = (Math.random() - 0.5) * 0.4;
       this.shapeData = customShapes[Math.floor(Math.random() * customShapes.length)];
-      this.scale = (Math.random() * 0.15) + 0.15;
+      this.scale = (Math.random() * 0.30) + 0.22;
       this.angle = Math.random() * 360;
       this.spinSpeed = (Math.random() - 0.5) * 0.006;
     }
@@ -57,7 +57,7 @@
       ctx.scale(this.scale, this.scale);
       ctx.rotate(this.angle);
       ctx.translate(this.shapeData.offsetX, this.shapeData.offsetY);
-      ctx.fillStyle = isHovered ? 'rgba(49, 162, 196, 0.85)' : 'rgba(20, 33, 61, 0.22)';
+      ctx.fillStyle = isHovered ? 'rgba(49, 162, 196, 0.9)' : 'rgba(20, 33, 61, 0.28)';
       ctx.fill(this.shapeData.path);
       ctx.restore();
     }
@@ -81,7 +81,7 @@
   }
 
   function connectParticles() {
-    const MAX_DIST = 180;
+    const MAX_DIST = 205;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
@@ -97,7 +97,7 @@
           }
           ctx.strokeStyle = nearMouse
             ? `rgba(49, 162, 196, ${opacity * 0.65})`
-            : `rgba(20, 33, 61, ${opacity * 0.18})`;
+            : `rgba(20, 33, 61, ${opacity * 0.26})`;
           ctx.lineWidth = nearMouse ? 1.3 : 0.8;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
@@ -110,7 +110,10 @@
 
   function init() {
     particles = [];
-    let n = Math.min(95, Math.floor((width * height) / 10000));
+    // Enhanced Najdi field — more shapes, denser (mobile gets a lighter count for performance)
+    const dense = width < 700 ? 10000 : 7500;
+    const cap = width < 700 ? 55 : 120;
+    let n = Math.min(cap, Math.floor((width * height) / dense));
     for (let i = 0; i < n; i++) particles.push(new CustomParticle());
   }
 
@@ -375,12 +378,12 @@
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const cursorEl = document.createElement('div');
     cursorEl.className = 'najdi-cursor';
-    cursorEl.innerHTML = '<div class="najdi-cursor-inner"></div>';
+    cursorEl.innerHTML = '<svg class="najdi-cursor-inner" viewBox="0 0 153.64 153.66" xmlns="http://www.w3.org/2000/svg"><path fill="#31A2C4" d="M131.08,22.42l-2.45,14.58-.67.55-11.85-11.6-13.75-8.16-16.33-5.29,11.51-9.03,4.9,13.11,13.11-5.59,1.52,13.9,13.87-2.46c-30.29-30.54-79.34-29.38-108.84.41-29.58,29.88-29.33,78.28-.11,107.9,29.97,30.38,78.87,30.52,108.96.71,29.81-29.54,30.66-78.5.13-109.02ZM153.29,76.77l-12.13,8.76-.06-16.29.83-.68,11.36,8.22ZM141.58,68.11l-.7.45-3.97-15.18,1.2-1.08,12.36,4.99-8.89,10.82ZM129.16,37.15l13.72,1.41-5.5,13.35-.51.82-8.5-14.57.79-1.01ZM136.71,76.86c0,33.07-26.81,59.88-59.88,59.88s-59.88-26.81-59.88-59.88,26.81-59.88,59.88-59.88,59.88,26.81,59.88,59.88ZM76.83.4l8.65,12.17-17.34.09L76.83.4ZM39.26,10.25l12.35,5.74,4.86-12.71,11.36,9.25-15.69,4.76-14.07,7.61c-.6-4.61.15-9.12,1.18-14.66ZM37.04,25.47l-11.44,11.66-2.77-14.3,14.22,2.63ZM.69,77.09l11.79-9.14-9.63-10.9,13.47-5.1-5.67-13.35,14.69-1.21-8.15,14.93-4.67,15.6h.01s.45,17.51.45,17.51l3.82,15.43-.78.58-13.22-4.84,9.11-11.18L.69,77.09ZM10.76,114.85l5.32-12.5c.17-.39.55-.84.98-1.01l8.41,14.73-.52.49-14.2-1.71ZM55.84,150.23l-4.99-13.06-12.56,5.62-1.49-13.87-13.88,2.04,1.96-13.55,1.08-.86,11.98,11.5,13.16,7.81,16.58,5.15-11.84,9.22ZM76.79,153.26l-8.41-12.02,16.63.15-8.22,11.87ZM142.94,114.93l-14.24,1.58,2.17,14.52-14.62-2.34-1.72,14.63-12.05-5.63-5.13,12.63-11.27-9.28,15.23-4.74,14.52-8.31c6.02-3.45,18.29-19.23,20.37-26.43l4.7-16.26,9.77,11.22-13.45,5.28,5.7,13.15Z"/><path fill="#31A2C4" d="M19.61,76.83c0,31.59,25.61,57.21,57.21,57.21s57.21-25.61,57.21-57.21-25.61-57.21-57.21-57.21-57.21,25.61-57.21,57.21ZM130.94,76.82c0,29.89-24.23,54.11-54.11,54.11s-54.11-24.23-54.11-54.11,24.23-54.11,54.11-54.11,54.11,24.23,54.11,54.11Z"/><path fill="#31A2C4" d="M76.8,128.67c28.64,0,51.85-23.21,51.85-51.85s-23.21-51.85-51.85-51.85-51.85,23.21-51.85,51.85,23.21,51.85,51.85,51.85ZM71.41,73.61c-13.39-9.61-20.8-23.44-20.07-40.84,15.3,7.22,24.69,22.04,25.62,39.1,1.63-17.39,11.07-31.05,26.66-38.45.32,16.38-6.6,30.3-20.23,39.91,14.74-6.6,31.19-5.37,44.49,3.69-14.94,9.56-31.23,9.89-46.27,2.7,14.08,9.49,21.89,24.66,20.45,41.28-15.63-8.19-24.31-22.18-25.31-38.69-2.03,17.13-10.97,30.56-26.67,37.88-.42-16.86,6.95-30.74,20.74-40.07-15.03,6.87-31.17,5.68-45.19-3.39,14.53-9.36,30.56-9.99,45.79-3.13Z"/></svg>';
     document.body.appendChild(cursorEl);
 
     const trailEl = document.createElement('div');
     trailEl.className = 'najdi-trail';
-    trailEl.innerHTML = '<div class="najdi-trail-inner"></div>';
+    trailEl.innerHTML = '<svg class="najdi-trail-inner" viewBox="0 0 153.64 153.66" xmlns="http://www.w3.org/2000/svg"><path fill="#31A2C4" d="M131.08,22.42l-2.45,14.58-.67.55-11.85-11.6-13.75-8.16-16.33-5.29,11.51-9.03,4.9,13.11,13.11-5.59,1.52,13.9,13.87-2.46c-30.29-30.54-79.34-29.38-108.84.41-29.58,29.88-29.33,78.28-.11,107.9,29.97,30.38,78.87,30.52,108.96.71,29.81-29.54,30.66-78.5.13-109.02ZM153.29,76.77l-12.13,8.76-.06-16.29.83-.68,11.36,8.22ZM141.58,68.11l-.7.45-3.97-15.18,1.2-1.08,12.36,4.99-8.89,10.82ZM129.16,37.15l13.72,1.41-5.5,13.35-.51.82-8.5-14.57.79-1.01ZM136.71,76.86c0,33.07-26.81,59.88-59.88,59.88s-59.88-26.81-59.88-59.88,26.81-59.88,59.88-59.88,59.88,26.81,59.88,59.88ZM76.83.4l8.65,12.17-17.34.09L76.83.4ZM39.26,10.25l12.35,5.74,4.86-12.71,11.36,9.25-15.69,4.76-14.07,7.61c-.6-4.61.15-9.12,1.18-14.66ZM37.04,25.47l-11.44,11.66-2.77-14.3,14.22,2.63ZM.69,77.09l11.79-9.14-9.63-10.9,13.47-5.1-5.67-13.35,14.69-1.21-8.15,14.93-4.67,15.6h.01s.45,17.51.45,17.51l3.82,15.43-.78.58-13.22-4.84,9.11-11.18L.69,77.09ZM10.76,114.85l5.32-12.5c.17-.39.55-.84.98-1.01l8.41,14.73-.52.49-14.2-1.71ZM55.84,150.23l-4.99-13.06-12.56,5.62-1.49-13.87-13.88,2.04,1.96-13.55,1.08-.86,11.98,11.5,13.16,7.81,16.58,5.15-11.84,9.22ZM76.79,153.26l-8.41-12.02,16.63.15-8.22,11.87ZM142.94,114.93l-14.24,1.58,2.17,14.52-14.62-2.34-1.72,14.63-12.05-5.63-5.13,12.63-11.27-9.28,15.23-4.74,14.52-8.31c6.02-3.45,18.29-19.23,20.37-26.43l4.7-16.26,9.77,11.22-13.45,5.28,5.7,13.15Z"/><path fill="#31A2C4" d="M19.61,76.83c0,31.59,25.61,57.21,57.21,57.21s57.21-25.61,57.21-57.21-25.61-57.21-57.21-57.21-57.21,25.61-57.21,57.21ZM130.94,76.82c0,29.89-24.23,54.11-54.11,54.11s-54.11-24.23-54.11-54.11,24.23-54.11,54.11-54.11,54.11,24.23,54.11,54.11Z"/><path fill="#31A2C4" d="M76.8,128.67c28.64,0,51.85-23.21,51.85-51.85s-23.21-51.85-51.85-51.85-51.85,23.21-51.85,51.85,23.21,51.85,51.85,51.85ZM71.41,73.61c-13.39-9.61-20.8-23.44-20.07-40.84,15.3,7.22,24.69,22.04,25.62,39.1,1.63-17.39,11.07-31.05,26.66-38.45.32,16.38-6.6,30.3-20.23,39.91,14.74-6.6,31.19-5.37,44.49,3.69-14.94,9.56-31.23,9.89-46.27,2.7,14.08,9.49,21.89,24.66,20.45,41.28-15.63-8.19-24.31-22.18-25.31-38.69-2.03,17.13-10.97,30.56-26.67,37.88-.42-16.86,6.95-30.74,20.74-40.07-15.03,6.87-31.17,5.68-45.19-3.39,14.53-9.36,30.56-9.99,45.79-3.13Z"/></svg>';
     document.body.appendChild(trailEl);
 
     const inner = cursorEl.querySelector('.najdi-cursor-inner');
@@ -453,4 +456,68 @@
     setTimeout(() => intro.remove(), 2400);
   }
 
+})();
+
+/* =====================================================
+   v15 — Unify Arabic/English numerals across all stat
+   numbers (static + animated) so they never mismatch.
+   ===================================================== */
+(function () {
+  'use strict';
+  const AR = '٠١٢٣٤٥٦٧٨٩';
+  const toArabic = s => s.replace(/[0-9]/g, d => AR[d]);
+  const toLatin  = s => s.replace(/[٠-٩]/g, d => String(AR.indexOf(d)));
+  function localizeNumerals() {
+    const ar = document.documentElement.lang === 'ar';
+    document.querySelectorAll('.case-stat-number').forEach(el => {
+      el.textContent = ar ? toArabic(el.textContent) : toLatin(el.textContent);
+    });
+  }
+  function run() { try { localizeNumerals(); } catch (e) {} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+  // re-localize after a language switch (runs after the existing toggle handler)
+  document.addEventListener('click', e => {
+    if (e.target.closest('.lang-toggle')) setTimeout(localizeNumerals, 40);
+  });
+})();
+
+/* =====================================================
+   v17 — Contact / footer: availability badge + reveal
+   (runs on every page; consistent footer behaviour)
+   ===================================================== */
+(function () {
+  'use strict';
+  // inject availability status into each contact section (before the grid)
+  document.querySelectorAll('.contact-inner').forEach(inner => {
+    if (inner.querySelector('.contact-status')) return;
+    const grid = inner.querySelector('.contact-grid');
+    if (!grid) return;
+    const s = document.createElement('div');
+    s.className = 'contact-status';
+    s.innerHTML = '<span class="dot"></span>' +
+      '<span class="lang-ar">متاحٌ للمشاريع والتعاون الجديد</span>' +
+      '<span class="lang-en">Available for new projects & collaboration</span>';
+    inner.insertBefore(s, grid);
+  });
+  // reveal the footer (staggered cells) when it scrolls into view
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.contact').forEach(c => io.observe(c));
+  } else {
+    document.querySelectorAll('.contact').forEach(c => c.classList.add('in'));
+  }
+  // magnetic pull on contact links (desktop)
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.contact-val a').forEach(el => {
+      el.style.display = 'inline-block';
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*0.18}px, ${(e.clientY-(r.top+r.height/2))*0.25}px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+  }
 })();

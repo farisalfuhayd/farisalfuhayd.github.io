@@ -1,7 +1,4 @@
 .DS_Store
-Thumbs.db
-*.swp
-.idea/
-.vscode/
+*.log
 node_modules/
-assets/najdi-rosette-source.png
+.vscode/
