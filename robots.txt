@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://farisalfuhayd.github.io/sitemap.xml
