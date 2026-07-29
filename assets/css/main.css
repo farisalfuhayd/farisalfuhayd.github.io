@@ -87,8 +87,17 @@ html.js .rv.in{opacity:1;transform:none}
 .rosette{-webkit-mask:url('../svg/najdi-16.svg') center/contain no-repeat;
   mask:url('../svg/najdi-16.svg') center/contain no-repeat;background:currentColor}
 
-/* hero/team canvas field — painted by JS, decorative only */
-.field{position:absolute;inset:0;pointer-events:none;z-index:0}
+/* site-wide Najdi field — fixed canvas painted by JS, decorative only */
+.njfield{position:fixed;inset:0;pointer-events:none;z-index:0}
+main,footer{position:relative;z-index:1}
+/* najdi cursor follower (fine pointers, reduced-motion off) */
+.najdi-cursor{position:fixed;top:0;left:0;width:30px;height:30px;margin:-15px 0 0 -15px;
+  pointer-events:none;z-index:140;color:var(--surf);opacity:.55;
+  -webkit-mask:url('../svg/najdi-cursor.svg') center/contain no-repeat;
+  mask:url('../svg/najdi-cursor.svg') center/contain no-repeat;background:currentColor;
+  transition:opacity .3s,width .25s,height .25s,margin .25s}
+.najdi-cursor.hide{opacity:0}
+.najdi-cursor.grow{width:44px;height:44px;margin:-22px 0 0 -22px;opacity:.85}
 
 /* ---------- header ---------- */
 .top{position:fixed;top:0;inset-inline:0;z-index:90;
@@ -204,6 +213,12 @@ html.js.hero-go .hv-main{clip-path:inset(0 0 0 0);transition:clip-path 1s var(--
   .hero h1{font-size:clamp(28px,7.6vw,40px)}
 }
 
+/* hero headline word entrance */
+html.js .hero h1 .w{display:inline-block;opacity:0;transform:translateY(.65em) rotate(2deg);
+  transition:opacity .75s var(--ease),transform .75s var(--ease)}
+html.js.hero-go .hero h1 .w{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html.js .hero h1 .w{opacity:1;transform:none;transition:none}}
+
 /* ---------- client ribbon ---------- */
 .clients{border-block:1px solid var(--hair);background:var(--white);overflow:hidden;padding:16px 0}
 .ribbon{display:flex;width:max-content;direction:ltr}
@@ -245,8 +260,15 @@ html.en .act-title{font-family:var(--d-en);font-weight:520;line-height:1.12}
 /* thread */
 .thread{position:absolute;top:0;bottom:0;inset-inline-start:calc(var(--pad) - 1px);width:2px;
   background:linear-gradient(var(--hair) 60%,transparent 0) top/2px 9px repeat-y}
+.thread::after{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--surf);
+  transform-origin:top;transform:scaleY(var(--tp,0))}
+@media (prefers-reduced-motion:reduce){.thread::after{display:none}}
 .act .node{position:absolute;top:clamp(64px,9vh,116px);inset-inline-start:calc(var(--pad) - 8px);
-  width:16px;height:16px;color:var(--surf);z-index:2}
+  width:16px;height:16px;color:var(--hair-strong);z-index:2;transition:color .6s,transform .6s var(--ease)}
+html.js .act .node{animation:nodeSpin 46s linear infinite}
+.act.on .node{color:var(--surf);transform:scale(1.35)}
+@keyframes nodeSpin{to{rotate:360deg}}
+@media (prefers-reduced-motion:reduce){html.js .act .node{animation:none}.act.on .node{transform:none}}
 .act-inner{padding-inline-start:clamp(34px,4vw,64px)}
 @media (max-width:720px){
   .thread{inset-inline-start:15px}
