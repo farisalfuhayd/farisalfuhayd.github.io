@@ -129,10 +129,14 @@
   /* ---------- hero entrance ---------- */
   setTimeout(function () { html.classList.add('hero-go'); }, 120);
 
-  /* ---------- Najdi field: faithful motifs, sparse, hero-only, pausable ---------- */
+  /* ---------- Najdi field (restored, lightened): site-wide, motifs + faint constellation,
+     scroll-flow, mouse-aware, paused when hidden, off under reduced-motion ---------- */
   (function field() {
-    var host = document.querySelector('.field');
-    if (!host || reduced) return;
+    if (reduced) return;
+    var host = document.createElement('div');
+    host.className = 'njfield';
+    host.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(host);
     var canvas = document.createElement('canvas');
     host.appendChild(canvas);
     var ctx = canvas.getContext('2d');
@@ -143,40 +147,72 @@
       { p: new Path2D('M129.61,47.92l-23.06.1c-1.48,0-2.9-1.08-2.93-2.68l-.39-21.46-25.58-.37-.61-23.5-24.47.22-.33,23.31-25.59.36-.87,23.81-25.78.41.2,22.31,129.42.06v-22.57Z'), ox: -65, oy: -35 }
     ];
     var W, H, parts = [], running = false, raf = null;
+    var mouse = { x: undefined, y: undefined };
+    var lastY = window.scrollY;
+    window.addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    window.addEventListener('mouseout', function () { mouse.x = undefined; mouse.y = undefined; });
     function resize() {
       var dpi = Math.min(window.devicePixelRatio || 1, 2);
-      W = host.clientWidth; H = host.clientHeight;
+      W = window.innerWidth; H = window.innerHeight;
       canvas.width = W * dpi; canvas.height = H * dpi;
       canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
       ctx.setTransform(dpi, 0, 0, dpi, 0, 0);
     }
     function init() {
       parts = [];
-      var count = W < 760 ? 10 : 22;
+      var count = W < 760 ? 14 : 30;
       for (var i = 0; i < count; i++) {
         parts.push({
           x: Math.random() * W, y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
+          vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
           s: shapes[i % shapes.length],
-          sc: Math.random() * 0.22 + 0.14,
+          sc: Math.random() * 0.24 + 0.13,
           a: Math.random() * Math.PI * 2,
-          sp: (Math.random() - 0.5) * 0.0035
+          sp: (Math.random() - 0.5) * 0.004
         });
       }
     }
+    // the field flows with the scroll — the page feels alive under your hand
+    window.addEventListener('scroll', function () {
+      var dy = window.scrollY - lastY;
+      lastY = window.scrollY;
+      for (var i = 0; i < parts.length; i++) {
+        parts[i].y -= dy * 0.16;
+        if (parts[i].y < -90) parts[i].y = H + 60;
+        if (parts[i].y > H + 90) parts[i].y = -60;
+      }
+    }, { passive: true });
     function draw() {
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = 'rgba(19,32,57,0.075)';
+      // faint constellation between nearby motifs
       for (var i = 0; i < parts.length; i++) {
-        var pt = parts[i];
+        for (var j = i + 1; j < parts.length; j++) {
+          var dx = parts[i].x - parts[j].x, dyy = parts[i].y - parts[j].y;
+          var d2 = dx * dx + dyy * dyy;
+          if (d2 < 16900) {
+            var al = 0.05 * (1 - Math.sqrt(d2) / 130);
+            ctx.strokeStyle = 'rgba(19,32,57,' + al.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(parts[i].x, parts[i].y); ctx.lineTo(parts[j].x, parts[j].y); ctx.stroke();
+          }
+        }
+      }
+      for (var k = 0; k < parts.length; k++) {
+        var pt = parts[k];
         pt.x += pt.vx; pt.y += pt.vy; pt.a += pt.sp;
-        if (pt.x < -80) pt.x = W + 60; if (pt.x > W + 80) pt.x = -60;
-        if (pt.y < -80) pt.y = H + 60; if (pt.y > H + 80) pt.y = -60;
+        if (pt.x < -90) pt.x = W + 60; if (pt.x > W + 90) pt.x = -60;
+        if (pt.y < -90) pt.y = H + 60; if (pt.y > H + 90) pt.y = -60;
+        var hovered = false;
+        if (mouse.x !== undefined) {
+          var mdx = pt.x - mouse.x, mdy = pt.y - mouse.y;
+          hovered = (mdx * mdx + mdy * mdy) < 12100; // 110px — the page notices you
+        }
         ctx.save();
         ctx.translate(pt.x, pt.y);
         ctx.scale(pt.sc, pt.sc);
         ctx.rotate(pt.a);
         ctx.translate(pt.s.ox, pt.s.oy);
+        ctx.fillStyle = hovered ? 'rgba(46,159,194,0.5)' : 'rgba(19,32,57,0.085)';
         ctx.fill(pt.s.p);
         ctx.restore();
       }
@@ -184,18 +220,85 @@
     }
     function start() { if (!running) { running = true; raf = requestAnimationFrame(draw); } }
     function stop() { running = false; if (raf) cancelAnimationFrame(raf); }
-    resize(); init();
+    resize(); init(); start();
     window.addEventListener('resize', function () { resize(); init(); }, { passive: true });
-    // pause when hero offscreen or tab hidden — no wasted frames
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) {
-        en[0].isIntersecting ? start() : stop();
-      }, { threshold: 0.02 }).observe(host);
-    } else { start(); }
     document.addEventListener('visibilitychange', function () {
       document.hidden ? stop() : start();
     });
   })();
+
+  /* ---------- najdi cursor follower (restored): velocity-driven, fine pointers only ---------- */
+  (function cursor() {
+    if (reduced || !finePointer) return;
+    var cur = document.createElement('div');
+    cur.className = 'najdi-cursor hide';
+    cur.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cur);
+    var mx = -100, my = -100, cx = -100, cy = -100, ang = 0, lastX = -100, lastYc = -100;
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      cur.classList.remove('hide');
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () { cur.classList.add('hide'); });
+    document.addEventListener('mouseover', function (e) {
+      cur.classList.toggle('grow', !!e.target.closest('a,button,.shot'));
+    });
+    (function loop() {
+      cx += (mx - cx) * 0.14; cy += (my - cy) * 0.14;
+      var v = Math.abs(mx - lastX) + Math.abs(my - lastYc);
+      lastX = mx; lastYc = my;
+      ang += 0.3 + Math.min(v * 0.12, 5); // spins with your movement
+      cur.style.transform = 'translate(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px) rotate(' + ang.toFixed(1) + 'deg)';
+      requestAnimationFrame(loop);
+    })();
+  })();
+
+  /* ---------- hero headline: word-by-word entrance ---------- */
+  (function words() {
+    if (reduced) return;
+    document.querySelectorAll('.hero h1 > span').forEach(function (block) {
+      var d = 0;
+      Array.prototype.slice.call(block.childNodes).forEach(function (node) {
+        var isEm = node.nodeType === 1 && node.tagName === 'EM';
+        if (node.nodeType !== 3 && !isEm) return;
+        var text = node.textContent;
+        var frag = document.createDocumentFragment();
+        text.split(/(\s+)/).forEach(function (w) {
+          if (/^\s*$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+          var sp = document.createElement('span');
+          sp.className = 'w';
+          sp.textContent = w;
+          sp.style.transitionDelay = (d * 95) + 'ms'; d++;
+          frag.appendChild(sp);
+        });
+        if (isEm) { node.textContent = ''; node.appendChild(frag); }
+        else block.replaceChild(frag, node);
+      });
+    });
+  })();
+
+  /* ---------- story thread fills as the story is read ---------- */
+  (function thread() {
+    var th = document.querySelector('.thread');
+    if (!th || reduced) return;
+    var wrap = th.parentElement;
+    function upd() {
+      var r = wrap.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh * 0.7 - r.top) / r.height));
+      th.style.setProperty('--tp', p.toFixed(3));
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    upd();
+  })();
+
+  /* ---------- acts wake as they enter ---------- */
+  if ('IntersectionObserver' in window) {
+    var aio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle('on', en.isIntersecting); });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.act').forEach(function (a) { aio.observe(a); });
+  }
 
   /* ---------- lightbox (focus-trapped, keyboard, swipe) ---------- */
   var lb = document.getElementById('lb');
